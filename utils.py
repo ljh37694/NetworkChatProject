@@ -61,7 +61,7 @@ def parse_message(raw_bytes: bytes) -> tuple[dict, str | None]:
 	return headers, body_text
 
 
-def make_req_msg(method: str, url: str, body: str = "", extra_field: list = None) -> bytes:
+def make_req_msg(method: str, url: str, body: str = "", extra_field: dict[str, str] = None) -> bytes:
 	body_bytes = body.encode()
 
 	header_lines = [
@@ -71,7 +71,7 @@ def make_req_msg(method: str, url: str, body: str = "", extra_field: list = None
 	]
 
 	if extra_field:
-		for key, value in extra_field:
+		for key, value in extra_field.items():
 			header_lines.append(f"{key}: {value}")
 	header = "\r\n".join(header_lines) + "\r\n\r\n"
 
@@ -81,7 +81,7 @@ def make_req_msg(method: str, url: str, body: str = "", extra_field: list = None
 	return header_bytes + body_bytes
 
 
-def make_res_msg(status: int, body: str = "", extra_field: list = None) -> bytes:
+def make_res_msg(status: int, body: str = "", extra_field: dict[str, str] = None) -> bytes:
 	status_messages = {
 		"200": "OK",
 		"400": "Bad Request",
@@ -94,7 +94,7 @@ def make_res_msg(status: int, body: str = "", extra_field: list = None) -> bytes
 	]
 
 	if extra_field:
-		for key, value in extra_field:
+		for key, value in extra_field.items():
 			header_lines.append(f"{key}: {value}")
 	header = "\r\n".join(header_lines) + "\r\n\r\n"
 

@@ -259,9 +259,9 @@ class MessengerGUI:
                     message = sock.recv(client.BUFFER_SIZE)
                     if not message:
                         read_list.remove(sock)
-                        for name, act_sock in list(client.active_rooms.items()):
+                        for name, act_sock in list(client.active_sockets.items()):
                             if act_sock == sock:
-                                del client.active_rooms[name]
+                                del client.active_sockets[name]
                                 break
                         continue
 
@@ -270,8 +270,8 @@ class MessengerGUI:
                     if "Method" in header:
                         sender_name = header.get("From", "Unknown")
 
-                        if sender_name not in client.active_rooms:
-                            client.active_rooms[sender_name] = sock
+                        if sender_name not in client.active_sockets:
+                            client.active_sockets[sender_name] = sock
 
                         # 현재 바라보고 있는 대화창의 주인과 송신자 주체가 일치하면 화면 렌더링
                         if self.current_target == sender_name:
