@@ -1,2 +1,15 @@
-.DS_Store
+# PyCharm 개인 설정 및 가상환경 통째로 제외
+.idea/
+*.iml
+.venv/
+
+# 동적 데이터베이스 파일 제외
+users.json
+
+# 파이썬 컴파일 결과물 제외
 __pycache__/
+*.pyc
+.DS_Store
+/.idea
+/.idea/inspectionProfiles
+/users.json
