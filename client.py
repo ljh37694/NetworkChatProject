@@ -171,6 +171,11 @@ def invite_user(target_name: str):
     # 내 세션에 등록 및 select 감시 대상에 등록
     try:
         target_sock = make_socket(target_name)
+
+        if target_sock is None:
+            print(f"[{target_name}] 님과 연결할 수 없습니다. (오프라인)")
+            return
+
         read_list.append(target_sock)
 
         send_packet(target_sock, "POST", "/invite", json.dumps([mem for mem in session_members.keys()]), {"From": my_info["id"]})
