@@ -53,7 +53,7 @@ def make_socket(target_name: str) -> socket | None:
 
 def print_session_members(count: int = 5):
     tmp_list = [my_info.get("id")] + [key for key in session_members.keys()]
-    length = len(session_members)
+    length = len(tmp_list)
 
     if length == 0:
         print("현재 세션에 참여 중인 유저가 없습니다.")
