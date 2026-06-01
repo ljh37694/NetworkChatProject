@@ -90,6 +90,7 @@ def make_res_msg(status: int, body: str = "", extra_field: dict[str, str] = None
 
 	header_lines = [
 		f"HTTP/1.0 {status} {status_messages[str(status)]}",
+		"Content-Type: application/json",
 		f"Content-Length: {len(body)}",
 	]
 

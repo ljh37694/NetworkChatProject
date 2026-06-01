@@ -55,7 +55,7 @@ def print_session_members(count: int = 5):
     tmp_list = [my_info.get("id")] + [key for key in session_members.keys()]
     length = len(tmp_list)
 
-    if length == 0:
+    if not session_connected:
         print("현재 세션에 참여 중인 유저가 없습니다.")
         return
 
@@ -367,7 +367,7 @@ def start_run():
                     elif method == "POST" and url == "/send":
                         print(f"[{sender_id}]: {body}")
 
-                        if session_members[sender_id] is None:
+                        if session_members.get(sender_id) is None:
                             session_members[sender_id] = sock
 
                         sock.sendall(make_res_msg(200))

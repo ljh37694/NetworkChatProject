@@ -1,7 +1,7 @@
 import select
 from socket import *
 import json
-from utils import parse_message, make_res_msg, is_valid_http_msg, make_req_msg
+from utils import parse_message, make_res_msg, make_req_msg
 
 SERVER_PORT = 12000
 BUFFER_SIZE = 1024
@@ -65,6 +65,7 @@ def handle_login(sock: socket, body: str):
 
 	sock.send(packet)
 
+	# 현재 online 상태인 모든 유저들에게 최신화된 user_dict 전송
 	send_user_dict_to_clients()
 
 	active_clients[user_id] = sock
