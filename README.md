@@ -1,5 +1,5 @@
 # login
-## msg format
+## Message format
 ---
 ### Request
 ```text
@@ -27,7 +27,7 @@ Content-Length: 54\r\n
 ---
 ### Resquest
 ```text
-CHAT /chat HTTP/1.0 \r\n
+POST /chat HTTP/1.0 \r\n
 From: user1
 Content-Length: 5\r\n
 \r\n
@@ -41,3 +41,9 @@ From: user2\r\n
 Content-Length: 0\r\n
 \r\n
 ```
+
+<br>
+
+## Functions
+### login()
+1. 로그인하면

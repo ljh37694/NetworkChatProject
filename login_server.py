@@ -34,7 +34,7 @@ def init():
 
 def send_user_dict_to_clients():
 	active_sock: socket
-	for uid, active_sock in active_clients.items():
+	for uid, active_sock in list(active_clients.items()):
 		request_body = json.dumps(user_dict)
 		request_msg = make_req_msg("PUT", "/users", request_body)
 		active_sock.sendall(request_msg)
@@ -69,6 +69,8 @@ def handle_login(sock: socket, body: str):
 
 	active_clients[user_id] = sock
 	socket_to_id[sock] = user_id
+
+	print(f"[{user_id}] has successfully logined in")
 
 
 def handle_users(sock: socket, body: str):
